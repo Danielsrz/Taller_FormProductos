@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formProductos));
             this.labelNombre = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtStock = new System.Windows.Forms.TextBox();
@@ -66,7 +67,7 @@
             this.groupBox1.Controls.Add(this.labelNombre);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(398, 198);
+            this.groupBox1.Size = new System.Drawing.Size(411, 198);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalles del Producto";
@@ -129,9 +130,9 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(23, 216);
+            this.btnGuardar.Location = new System.Drawing.Point(449, 60);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(121, 55);
             this.btnGuardar.TabIndex = 2;
             this.btnGuardar.Text = "Agregar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -139,7 +140,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(174, 216);
+            this.btnEliminar.Location = new System.Drawing.Point(429, 130);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 3;
@@ -149,7 +150,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(321, 216);
+            this.btnCancelar.Location = new System.Drawing.Point(511, 130);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 4;
@@ -160,9 +161,9 @@
             // dgvBuscar
             // 
             this.dgvBuscar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBuscar.Location = new System.Drawing.Point(12, 258);
+            this.dgvBuscar.Location = new System.Drawing.Point(12, 228);
             this.dgvBuscar.Name = "dgvBuscar";
-            this.dgvBuscar.Size = new System.Drawing.Size(549, 150);
+            this.dgvBuscar.Size = new System.Drawing.Size(574, 180);
             this.dgvBuscar.TabIndex = 5;
             this.dgvBuscar.Click += new System.EventHandler(this.dgvBuscar_Click);
             // 
@@ -170,12 +171,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 450);
+            this.ClientSize = new System.Drawing.Size(598, 450);
             this.Controls.Add(this.dgvBuscar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "formProductos";
             this.Text = "Productos";
             this.Load += new System.EventHandler(this.formProductos_Load);

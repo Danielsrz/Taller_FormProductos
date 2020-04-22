@@ -21,9 +21,9 @@ namespace Data
         {
             List<Producto> listaProductos = new List<Producto>();
 
-            SqlCommand comando = new SqlCommand("GetProductos", BaseDatos.ObtenerConexion());
+            SqlConnection conexion = BaseDatos.ObtenerConexion();
+            SqlCommand comando = new SqlCommand("GetProductos", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
-           
             SqlDataReader reader = comando.ExecuteReader();
             while (reader.Read())
             {
@@ -33,32 +33,45 @@ namespace Data
                 miProducto.Descripcion = reader.GetString(2);
                 miProducto.Precio = reader.GetDouble(3);
                 miProducto.Stock = reader.GetInt32(4);
-
                 listaProductos.Add(miProducto);
             }
+            conexion.Close();
             return listaProductos;
+        }
+
+        public static void Agregar(Producto miProducto)
+        {
+            SqlConnection conexion = BaseDatos.ObtenerConexion();
+            SqlCommand comando = new SqlCommand("InsertProductos", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Nombre", miProducto.Nombre);
+            comando.Parameters.AddWithValue("@Descripción", miProducto.Descripcion);
+            comando.Parameters.AddWithValue("@Precio", miProducto.Precio);
+            comando.Parameters.AddWithValue("@Stock", miProducto.Stock);
+            comando.ExecuteNonQuery();
+            conexion.Close();
         }
 
         public static void Actualizar(Producto miProducto)
         {
             SqlConnection conexion = BaseDatos.ObtenerConexion();
-            SqlCommand comando = new SqlCommand(string.Format("Update productos set Nombre='{0}', Descripción='{1}', Precio='{2}', Stock='{3}' where IdProducto={4}",
-                miProducto.Nombre, miProducto.Descripcion, miProducto.Precio, miProducto.Stock, miProducto.Id), conexion);
+            SqlCommand comando = new SqlCommand("UpdateProductos", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Nombre", miProducto.Nombre);
+            comando.Parameters.AddWithValue("@Descripción", miProducto.Descripcion);
+            comando.Parameters.AddWithValue("@Precio", miProducto.Precio);
+            comando.Parameters.AddWithValue("@Stock", miProducto.Stock);
+            comando.Parameters.AddWithValue("@ID", miProducto.Id);
             comando.ExecuteNonQuery();
             conexion.Close();
-        }
-
-        public static void Agregar(Producto miProducto)
-        {
-            SqlCommand comando = new SqlCommand(string.Format("Insert into productos (Nombre, Descripción, Precio, Stock) values ('{0}','{1}','{2}', '{3}')",
-                miProducto.Nombre, miProducto.Descripcion, miProducto.Precio, miProducto.Stock), BaseDatos.ObtenerConexion());
-            comando.ExecuteNonQuery();
         }
 
         public static void Eliminar(int pId)
         {
             SqlConnection conexion = BaseDatos.ObtenerConexion();
-            SqlCommand comando = new SqlCommand(string.Format("Delete From productos where IDProducto={0}", pId), conexion);
+            SqlCommand comando = new SqlCommand("DeleteProductos", conexion);
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@ID", pId);
             comando.ExecuteNonQuery();
             conexion.Close();
         }
