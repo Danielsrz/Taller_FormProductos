@@ -30,13 +30,13 @@
         {
             this.labelNombre = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelDescripcion = new System.Windows.Forms.Label();
-            this.labelPrecio = new System.Windows.Forms.Label();
-            this.labelStock = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtStock = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.labelStock = new System.Windows.Forms.Label();
+            this.labelPrecio = new System.Windows.Forms.Label();
+            this.labelDescripcion = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -71,23 +71,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalles del Producto";
             // 
-            // labelDescripcion
+            // txtStock
             // 
-            this.labelDescripcion.AutoSize = true;
-            this.labelDescripcion.Location = new System.Drawing.Point(23, 70);
-            this.labelDescripcion.Name = "labelDescripcion";
-            this.labelDescripcion.Size = new System.Drawing.Size(63, 13);
-            this.labelDescripcion.TabIndex = 1;
-            this.labelDescripcion.Text = "Descripción";
+            this.txtStock.Location = new System.Drawing.Point(97, 151);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(276, 20);
+            this.txtStock.TabIndex = 7;
             // 
-            // labelPrecio
+            // txtPrecio
             // 
-            this.labelPrecio.AutoSize = true;
-            this.labelPrecio.Location = new System.Drawing.Point(23, 118);
-            this.labelPrecio.Name = "labelPrecio";
-            this.labelPrecio.Size = new System.Drawing.Size(37, 13);
-            this.labelPrecio.TabIndex = 2;
-            this.labelPrecio.Text = "Precio";
+            this.txtPrecio.Location = new System.Drawing.Point(97, 118);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(276, 20);
+            this.txtPrecio.TabIndex = 6;
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(97, 70);
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(276, 33);
+            this.txtDescripcion.TabIndex = 5;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(97, 38);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(276, 20);
+            this.txtNombre.TabIndex = 4;
             // 
             // labelStock
             // 
@@ -98,38 +109,27 @@
             this.labelStock.TabIndex = 3;
             this.labelStock.Text = "Stock";
             // 
-            // txtNombre
+            // labelPrecio
             // 
-            this.txtNombre.Location = new System.Drawing.Point(97, 38);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(276, 20);
-            this.txtNombre.TabIndex = 4;
+            this.labelPrecio.AutoSize = true;
+            this.labelPrecio.Location = new System.Drawing.Point(23, 118);
+            this.labelPrecio.Name = "labelPrecio";
+            this.labelPrecio.Size = new System.Drawing.Size(37, 13);
+            this.labelPrecio.TabIndex = 2;
+            this.labelPrecio.Text = "Precio";
             // 
-            // txtDescripcion
+            // labelDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(97, 70);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(276, 33);
-            this.txtDescripcion.TabIndex = 5;
-            // 
-            // txtPrecio
-            // 
-            this.txtPrecio.Location = new System.Drawing.Point(97, 118);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(276, 20);
-            this.txtPrecio.TabIndex = 6;
-            // 
-            // txtStock
-            // 
-            this.txtStock.Location = new System.Drawing.Point(97, 151);
-            this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(276, 20);
-            this.txtStock.TabIndex = 7;
+            this.labelDescripcion.AutoSize = true;
+            this.labelDescripcion.Location = new System.Drawing.Point(23, 70);
+            this.labelDescripcion.Name = "labelDescripcion";
+            this.labelDescripcion.Size = new System.Drawing.Size(63, 13);
+            this.labelDescripcion.TabIndex = 1;
+            this.labelDescripcion.Text = "Descripción";
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(38, 216);
+            this.btnGuardar.Location = new System.Drawing.Point(23, 216);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 2;
@@ -139,7 +139,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(191, 216);
+            this.btnEliminar.Location = new System.Drawing.Point(174, 216);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 3;
@@ -149,7 +149,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(335, 216);
+            this.btnCancelar.Location = new System.Drawing.Point(321, 216);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 4;
