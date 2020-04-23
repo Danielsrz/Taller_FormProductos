@@ -11,12 +11,6 @@ namespace Data
     public class ProductoData
     {
 
-        public static void Guardar(Producto miProducto)
-        {
-            if (miProducto.Id == 0) Agregar(miProducto);
-            else Actualizar(miProducto);
-        }
-
         public static List<Producto> Buscar()
         {
             List<Producto> listaProductos = new List<Producto>();

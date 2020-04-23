@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Data;
+using Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace FormularioProductos
 
         public int IDProducto;
 
+        //MÉTODOS DEL FORMULARIO
         private void ActualizarControles()
         {
             btnGuardar.Text = "Guardar";
@@ -48,10 +50,18 @@ namespace FormularioProductos
             miProducto.Id = IDProducto;
             miProducto.Nombre = txtNombre.Text;
             miProducto.Descripcion = txtDescripcion.Text;
-            miProducto.Precio = Convert.ToDouble(txtPrecio.Text);
-            miProducto.Stock = Convert.ToInt32(txtStock.Text);
-
+            if (txtPrecio.Text == "") miProducto.Precio = 0.0;
+            else miProducto.Precio = Convert.ToDouble(txtPrecio.Text);
+            if (txtStock.Text == "") miProducto.Stock = 0;
+            else miProducto.Stock = Convert.ToInt32(txtStock.Text);
             return miProducto;
+        }
+
+        private int ObtenerID() 
+        {
+            Producto miProducto = new Producto();
+            miProducto.Id = IDProducto;
+            return miProducto.Id;
         }
 
         private void ActualizarGrid()
@@ -61,10 +71,20 @@ namespace FormularioProductos
             dgvBuscar.DataSource = listaProductos;
         }
 
+
+        //BOTONES Y ELEMENTOS DEL FORMULARIO
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Producto miProducto = ObtenerProducto();
-            ProductoData.Guardar(miProducto);
+            ProductoManager.Guardar(miProducto);
+            ActualizarGrid();
+            LimpiarCampos();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int idEliminar = ObtenerID();
+            ProductoManager.EliminarProducto(idEliminar);
             ActualizarGrid();
             LimpiarCampos();
         }
@@ -84,22 +104,6 @@ namespace FormularioProductos
             ActualizarGrid();
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (IDProducto.Equals(0))
-            {
-                MessageBox.Show("Por favor seleccione un Producto");
-            }
-            else
-            {
-                if (MessageBox.Show("¿Está seguro que desea eliminar el producto?", "Eliminar Producto", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    Producto miProducto = ObtenerProducto();
-                    ProductoData.Eliminar(miProducto.Id);
-                    ActualizarGrid();
-                    LimpiarCampos();
-                }
-            }
-        }
+
     }
 }
