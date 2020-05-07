@@ -11,42 +11,31 @@ namespace Business
 {
     public class ProductoManager
     {
-        //VALIDAR SI HAY QUE AGREGAR O MODIFICAR UN PRODUCTO
-        //VALIDAD SI TODOS LOS CAMPOS DEL FORMULARIO ESTAN COMPLETOS PARA AGREGAR UN PRODUCTO
-        public static void Guardar(Producto miProducto)
+        public static List<Producto> Obtener()
         {
-            bool formulario = ValidarFormulario(miProducto);
-            if (miProducto.Id.Equals(0))
-            {
-                if (formulario == true)
-                {
-                    ProductoData.Agregar(miProducto);
-                    MessageBox.Show("Producto agregado exitosamente", "Agregar producto");
-                }
-                else MessageBox.Show("Debe completar todos los campos", "Error");
-                
-            }
-            else
-            {
-                ProductoData.Actualizar(miProducto);
-            }
+            return ProductoData.Buscar();
         }
 
-        //VALIDAD QUE ESTE SELECCIONADO UN ELEMENTO PARA PODER ELIMINARLO
+        public static void Guardar(Producto miProducto)
+        {
+            ProductoData.Agregar(miProducto);
+        }
+
+        public static void Actualizar(Producto miProducto)
+        {
+            ProductoData.Actualizar(miProducto);
+        }
+
         public static void EliminarProducto(int pId)
         {
-            if (pId.Equals(0))
-            {
-                MessageBox.Show("Por favor seleccione un Producto");
-            }
-            else
-            {
-                if (MessageBox.Show("¿Está seguro que desea eliminar el producto?", "Eliminar Producto", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    ProductoData.Eliminar(pId);
-                }
-            }
+            ProductoData.Eliminar(pId);
         }
+
+        public static List<Cliente> ObtenerCliente()
+        {
+            return ProductoData.BuscarCliente();
+        }
+
 
         //METODO PARA VALIDAR QUE TODOS LOS CAMPOS DEL FORMULARIO ESTEN COMPLETOS
         public static bool ValidarFormulario(Producto miProducto)

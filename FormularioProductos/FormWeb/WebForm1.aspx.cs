@@ -1,35 +1,32 @@
-﻿using Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Domain;
 using Data;
 using Business;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
-namespace FormularioProductos
+namespace FormWeb
 {
-    public partial class formProductos : Form
+    public partial class WebForm1 : System.Web.UI.Page
     {
-        public formProductos()
-        {
-            InitializeComponent();
-        }
-
         public int IDProducto;
 
-        //MÉTODOS DEL FORMULARIO
         private void ActualizarControles()
         {
-            btnGuardar.Text = "Guardar";
-            IDProducto = Convert.ToInt32(dgvBuscar.CurrentRow.Cells[0].Value);
-            txtNombre.Text = Convert.ToString(dgvBuscar.CurrentRow.Cells[1].Value);
-            txtDescripcion.Text = Convert.ToString(dgvBuscar.CurrentRow.Cells[2].Value);
-            txtPrecio.Text = Convert.ToString(dgvBuscar.CurrentRow.Cells[3].Value);
-            txtStock.Text = Convert.ToString(dgvBuscar.CurrentRow.Cells[4].Value);
+            //btnGuardar.Text = "Guardar";
+            //IDProducto =
+            //txtNombre.Text =
+            //txtDescripcion.Text =
+            //txtPrecio.Text =
+            //txtStock.Text =
         }
 
         private void LimpiarCampos()
         {
-            btnGuardar.Text = "Nuevo";
+            btnGuardar.Text = "Agregar";
             IDProducto = 0;
             txtNombre.Text = "";
             txtDescripcion.Text = "";
@@ -51,7 +48,7 @@ namespace FormularioProductos
             return miProducto;
         }
 
-        private int ObtenerID() 
+        private int ObtenerID()
         {
             Producto miProducto = new Producto();
             miProducto.Id = IDProducto;
@@ -65,8 +62,6 @@ namespace FormularioProductos
             dgvBuscar.DataSource = listaProductos;
         }
 
-
-        //BOTONES Y ELEMENTOS DEL FORMULARIO
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Producto miProducto = ObtenerProducto();
@@ -93,11 +88,14 @@ namespace FormularioProductos
             ActualizarControles();
         }
 
-        private void formProductos_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             ActualizarGrid();
         }
 
-
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
     }
 }

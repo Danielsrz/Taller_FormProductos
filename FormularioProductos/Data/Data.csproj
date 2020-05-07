@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDatos.cs" />
+    <Compile Include="PedidoData.cs" />
     <Compile Include="ProductoData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

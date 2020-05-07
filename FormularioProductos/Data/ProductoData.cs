@@ -10,7 +10,6 @@ namespace Data
 {
     public class ProductoData
     {
-
         public static List<Producto> Buscar()
         {
             List<Producto> listaProductos = new List<Producto>();
@@ -68,6 +67,29 @@ namespace Data
             comando.Parameters.AddWithValue("@ID", pId);
             comando.ExecuteNonQuery();
             conexion.Close();
+        }
+
+        public static List<Cliente> BuscarCliente()
+        {
+            List<Cliente> _lista = new List<Cliente>();
+
+            SqlCommand _comando = new SqlCommand("GetClientes", BaseDatos.ObtenerConexion());
+            _comando.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlDataReader _reader = _comando.ExecuteReader();
+            while (_reader.Read())
+            {
+                Cliente pCliente = new Cliente();
+                pCliente.Id = _reader.GetInt32(0);
+                pCliente.Nombre = _reader.GetString(1);
+                pCliente.Apellido = _reader.GetString(2);
+                pCliente.Fecha_Nac = _reader.GetString(3);
+                pCliente.Direccion = _reader.GetString(4);
+
+
+                _lista.Add(pCliente);
+            }
+
+            return _lista;
         }
     }
 }
