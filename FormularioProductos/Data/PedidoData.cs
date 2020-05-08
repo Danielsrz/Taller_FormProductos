@@ -21,10 +21,10 @@ namespace Data
             while (reader.Read())
             {
                 Pedido miPedido = new Pedido();
-                miPedido.ID = reader.GetInt32(0);
-                miPedido.Cliente = reader.GetString(1);
-                miPedido.Producto = reader.GetString(2);
-                miPedido.Cantidad = reader.GetInt32(3);
+                //miPedido.ID = reader.GetInt32(0);
+                miPedido.IDCliente = reader.GetString(0);
+                miPedido.IDProducto = reader.GetString(1);
+                miPedido.Cantidad = reader.GetInt32(2);
                 listaPedido.Add(miPedido);
                 Producto miProducto = new Producto();
 
@@ -38,8 +38,8 @@ namespace Data
             SqlConnection conexion = BaseDatos.ObtenerConexion();
             SqlCommand comando = new SqlCommand("InsertPedido", conexion);
             comando.CommandType = System.Data.CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@Cliente", miPedido.Cliente);
-            comando.Parameters.AddWithValue("@Producto", miPedido.Producto);
+            comando.Parameters.AddWithValue("@IDCliente", miPedido.IDCliente);
+            comando.Parameters.AddWithValue("@IDProducto", miPedido.IDProducto);
             comando.Parameters.AddWithValue("@Cantidad", miPedido.Cantidad);
             comando.ExecuteNonQuery();
             conexion.Close();

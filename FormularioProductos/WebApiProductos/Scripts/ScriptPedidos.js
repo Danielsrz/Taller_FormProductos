@@ -51,11 +51,11 @@ function productoGET() {
 function construirComboCli(data) {
     var cmb = $('#cmbClientes');
     cmb.html("");
-    var select = $('<select name="selectClientes"> </select>');
+    var select = $('<select name="selectClientes" class="form-control mt-2"> </select>');
     var titulo = $('<option hidden selected>Seleccione un Cliente</option>');
     select.append(titulo);
     for (d in data) {
-        select.append($('<option>' +  data[d].Nombre + '</option>'));
+        select.append($('<option value=' + data[d].Id + '>' + data[d].Nombre + '</option>'));
     }
     cmb.append(select);
 }
@@ -63,11 +63,11 @@ function construirComboCli(data) {
 function construirComboPro(data) {
     var cmb = $('#cmbProductos');
     cmb.html("");
-    var select = $('<select name="selectClientes"> </select>');
+    var select = $('<select name="selectClientes" class="form-control mt-2"> </select>');
     var titulo = $('<option hidden selected>Seleccione un Producto</option>');
     select.append(titulo);
     for (d in data) {
-        select.append($('<option>' + data[d].Nombre + '</option>'));
+        select.append($('<option value=' + data[d].Id + '>' + data[d].Nombre + '</option>'));
     }
     cmb.append(select);
 }
@@ -86,7 +86,7 @@ function pedidoPOST() {
         url: 'https://localhost:44370/api/pedido/',
         type: 'POST',
         async: false,
-        data: { "ID": obj.Id, "Cliente": obj.Cliente, "Producto": obj.Producto, "Cantidad": obj.Cantidad}
+        data: { "ID": obj.Id, "IDCliente": obj.IDCliente, "IDProducto": obj.IDProducto, "Cantidad": obj.Cantidad}
     }).done(function (data) {
         result = data;
     }).error(function (xhr, status, error) {
@@ -100,8 +100,8 @@ function pedidoPOST() {
 
 function obtenerPedido(){
     var pedido = {};
-    pedido.Cliente = $('#cmbClientes option:selected').text();
-    pedido.Producto = $('#cmbProductos option:selected').text();
+    pedido.IDCliente = $('#cmbClientes option:selected').val();
+    pedido.IDProducto = $('#cmbProductos option:selected').val();
     pedido.Cantidad = $('#txtCantidad').val();
 
     return pedido;
@@ -132,7 +132,7 @@ function construyeGrilla(data) {
 
 
     var header = $(' <thead class="table-primary"><tr></tr></thead>');
-    header.append('<th scope="col">ID</th>');
+    //header.append('<th scope="col">ID</th>');
     header.append('<th scope="col">Cliente</th>');
     header.append('<th scope="col">Producto</th>');
     header.append('<th scope="col">Cantidad</th>');
@@ -143,9 +143,9 @@ function construyeGrilla(data) {
 
     for (d in data) {
         var row = $('<tr></tr>');
-        row.append('<td>' + data[d].ID + '</td>');
-        row.append('<td>' + data[d].Cliente + '</td>');
-        row.append('<td>' + data[d].Producto + '</td>');
+        //row.append('<td>' + data[d].ID + '</td>');
+        row.append('<td>' + data[d].IDCliente + '</td>');
+        row.append('<td>' + data[d].IDProducto + '</td>');
         row.append('<td>' + data[d].Cantidad + '</td>');
         row.append('<td>0</td>');
 
